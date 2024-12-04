@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="C:\xo\l3bh\templates\tst\images.jpg">
+    <title>لعبة تخمين الرقم</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #50518b ;
+            padding: 50px;
+        }
+        #message {
+            font-size: 1.5rem;
+            margin-top: 20px;
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #3c763d;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        /* تنسيق المربع الذي يحتوي على المدخلات */
+        .input-box {
+            background: linear-gradient(45deg, #405d48, #111416, #453e3e);
+            background-color: #282d3c;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            display: inline-block;
+        }
+
+        /* تنسيق حقل الإدخال */
+        input[type="number"] {
+            padding: 10px;
+            font-size: 1.2rem;
+            width: 200px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 2px solid #624444;
+            text-align: center;
+        }
+
+        /* تنسيق الأزرار */
+        button {
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            color: rgb(67, 120, 107);
+            background-color: #243941;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2bcaa8;
+        }
+
+        #but1 {
+            background-color: #304f59;
+            margin-top: 20px;
+        }
+
+        #but1:hover {
+            background-color: #530aff;
+        }
+
+        /* خلفية متحركة */
+        body {
+            background: linear-gradient(45deg, #467252, #6c565c, #4c707a59);
+            background-size: 400% 400%;
+            animation: gradientAnimation 10s ease infinite;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="input-box">
+    <h1 style="color: #2bcaa8;" >لعبة تخمين الرقم</h1>
+    <p style="color: #2bcaa8;" >خمن الرقم بين 1 و 100!</p>
+    </div>
+
+    <!-- مربع الإدخال -->
+    <div class="input-box">
+        <input type="number" id="userInput" placeholder="أدخل الرقم" min="1" max="100">
+        <button onclick="checkGuess()">تخمين</button>
+        <br>
+        <button id="but1" onclick="tst()">إرسال</button>
+
+    </div>
+
+    <p id="message"></p>
+
+
+    <script>
+        // توليد رقم عشوائي جديد بين 1 و 100
+        let randomNumber = Math.floor(Math.random() * 100) + 1;
+
+        // دالة التحقق من التخمين
+        function checkGuess() {
+            const userInput = document.getElementById("userInput").value;
+            const message = document.getElementById("message");
+
+            if (userInput == randomNumber) {
+                message.innerHTML = "أحسنت! لقد خمّنت الرقم الصحيح!";
+                message.style.color = "green";
+
+                // توليد رقم عشوائي جديد
+                randomNumber = Math.floor(Math.random() * 100) + 1;
+                document.getElementById("userInput").value = ""; // مسح قيمة المدخل بعد التخمين الصحيح
+            } else if (userInput < randomNumber) {
+                message.innerHTML = "الرقم أكبر من ذلك!";
+                message.style.color = "red";
+            } else {
+                message.innerHTML = "الرقم أصغر من ذلك!";
+                message.style.color = "red";
+            }
+        }
+
+        // دالة اختبار إضافية
+        function tst() {
+            alert("تم إرسال الرقم!");
+        }
+    </script>
+</body>
+</html>
